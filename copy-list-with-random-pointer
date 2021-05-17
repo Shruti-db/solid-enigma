@@ -13,7 +13,11 @@ public:
     }
 };
 */
-
+/*
+Remember the following steps:
+1) Insert a copy in between
+2) current->next->random = current->random->next
+*/
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
