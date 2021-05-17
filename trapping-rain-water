@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int l_max =0;
+        int r_max =0;
+        int low =0;
+        int storage =0;
+        int high = height.size()-1;
+        while(low<=high){
+            if(height[low]<height[high]){
+                if(l_max<height[low]) l_max = height[low];
+                else storage+=l_max-height[low];
+                 low ++;
+            }
+           
+            else{
+                if(height[high]>r_max) r_max = height[high];
+                else storage+=r_max-height[high];
+                 high--;
+            }
+           
+        }
+        
+        return storage;
+        
+        
+    }
+};
