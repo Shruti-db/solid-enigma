@@ -13,7 +13,7 @@ Node* deserialize(string s){
 	return deserializehelper(ss);
 }
 
-Node *deserializehelper(istringstream ss){
+Node *deserializehelper(istringstream &ss){
 	string word;
 	ss>> word;
 	if(word == '#')
