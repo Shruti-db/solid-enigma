@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace.std;
+
+//Serialize and Deserialize a binary Tree
+string serialize(Node *root){
+	if(root==NULL)
+		return '#';
+	return serialize(root->left)+" "+serialize(root->right);
+}
+
+Node* deserialize(string s){
+	istringstream ss(s);
+	return deserializehelper(ss);
+}
+
+Node *deserializehelper(istringstream ss){
+	string word;
+	ss>> word;
+	if(word == '#')
+		return NULL;
+	Node *node = new Node(stoi(word));
+	node->left = deserializehelper(ss);
+	node->right = deserializehelper(ss);
+	return node;
+}
