@@ -1,0 +1,9 @@
+There are theree methods for this:
+1. create a new array of size n1+n2, add the elements to this, sort it, then push the element back to both the arrays. Time Complexity
+   o(nlogn)+ o(n) + o(n), space complexity O(n)
+2. Take advantage of the fact that the initial array is sorted, compare the element. if it;s greate then swap and again sort the second array, Time complexity 
+  O(n*m);
+3. gap Method, Time Complexity O(nlogn)
+   take gap = size/2;
+   place the two indices gap distance apart, compare and swap, then proceed
+   successively reduce the gap to 1, the final ararys will now be sorted.
