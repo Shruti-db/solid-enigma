@@ -1,0 +1,33 @@
+//method 1: By storing the count while traversing the array in a new count array
+//method 2: using floyd warshall algo, maintain two pointers, remember we are using do while loop here.
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int [] count = new int[nums.length];
+        for(int i=0; i<nums.length; i++){
+            if(count[nums[i]]>=1)
+                return nums[i];
+            else
+                count[nums[i]]++;
+        }
+        return -1;
+    }
+}
+
+Method 2:
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+         int slow = nums[0];
+         int fast = nums[0];
+         do{
+             slow = nums[slow];
+             fast = nums[nums[fast]];
+         }while(slow!=fast);
+         fast = nums[0];
+         while(slow!=fast){
+             slow = nums[slow];
+             fast = nums[fast];
+         }
+         return slow;
+     }
+    }
