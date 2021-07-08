@@ -1,0 +1,49 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        
+        if(nums.length ==0 || nums.length ==1 || nums == null) return;
+        
+        //step1 traverse from backwards and find ind1 where nums[i]<nums[i+1]
+        //step2 traverse backwards and find ind2 which is greater than nums[ind1]
+        //step3 swap nums[ind1] and nums[ind2]
+        //step4 reverse array elements post ind2+1;
+        int ind1=-1, ind2=0;
+        //int flag =0;
+        for(int i= nums.length-2; i>=0; i--){
+            if(nums[i]<nums[i+1])
+            {
+                ind1 = i;
+                break;
+            }
+        }
+        if(ind1<0){
+            reverse(nums, 0, nums.length-1);
+        }else{
+            for(int i = nums.length-1; i>ind1; i--){
+                if(nums[i]>nums[ind1])
+                    {
+                        ind2=i;
+                        break;
+                    }
+            }
+            swap(nums, ind1, ind2);
+            reverse(nums, ind1+1, nums.length-1);
+            
+        }
+        
+        
+    }
+    public void swap(int [] nums, int a, int b){
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+    public void reverse(int [] nums, int start, int end){
+        while(start<end){
+            //System.out.println(start +" "+end);
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+}
