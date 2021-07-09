@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        int i=0, j=0;
+        vector<vector<int>>visited(m, vector<int>(n,-1));
+        return func(i, j, m, n, visited);
+        
+    }
+    int func(int i, int j, int m, int n, vector<vector<int>>&visited){
+        
+        if(i>=m || j>=n)
+             return 0;
+        if(i==m-1 && j==n-1){
+            return 1;
+        }
+        if(visited[i][j]!=-1){
+            return visited[i][j];
+        }
+         return visited[i][j]= func(i+1, j , m, n, visited)+ func(i, j+1, m, n, visited);
+    }
+};
