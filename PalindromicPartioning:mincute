@@ -1,0 +1,49 @@
+class Solution {
+    public int minCut(String s) {
+        int [][]t = new int[2001][2001];
+        for(int i=0; i<2001; i++){
+            for(int j=0; j<2001; j++){
+                t[i][j] = -1;
+            }
+        }
+        return solve(s, 0, s.length()-1, t); 
+    }
+    
+    int solve(String s, int i, int j, int[][]t){
+        
+        if(i>=j )
+            return 0;
+        
+        if(isPalin(s, i, j)){
+            t[i][j] =0;
+            return 0;
+        }
+            
+        if(t[i][j]!=-1)
+            return t[i][j];
+        
+        int ans = Integer.MAX_VALUE;
+        
+        for(int k = i; k < j; k++)
+            {
+                if(isPalin(s, i, k)){
+                    int partitions = 1+solve(s, k+1, j, t);
+                    ans = Math.min(ans, partitions);                
+                }
+            }
+          t[i][j] = ans;
+                return ans;
+    }
+    
+    static boolean isPalin(String string, int i, int j)
+    {
+        while(i < j)
+        {
+            if(string.charAt(i) != string.charAt(j))
+                return false; 
+            i++;
+            j--;
+        }
+    return true;
+  }
+}
